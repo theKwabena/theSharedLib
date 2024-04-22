@@ -10,11 +10,12 @@ class Flutter implements Serializable{
 
     def flutter_doctor(){
         script.echo "----- RUNNING FLUTTER DOCTOR -----"
-        script.sh "flutter doctor"
+        script.sh "flutter"
 
     }
 
     def test_app(coverage=false, directory=null){
+        script.echo "---- TESTING APP -----"
         script.sh "flutter test"
     }
 
