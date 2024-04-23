@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da6b1052-49fb-4431-b60c-72f18f52ba0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/lutermart/Docker.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vars/buildDockerImage.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/lutermart/Flutter.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/lutermart/Flutter.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/lutermart/Docker.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/lutermart/Docker.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713777329557</updated>
-      <workItem from="1713777330716" duration="6715000" />
+      <workItem from="1713777330716" duration="10433000" />
     </task>
     <servers />
   </component>
