@@ -1,12 +1,14 @@
 package com.lutermart
 
 class BuildParams {
+    def script;
     String imageName;
     String imageTag;
     Boolean push;
     DockerConfig config;
 
-    BuildParams(String imageName, DockerConfig config, String imageTag, Boolean push){
+    BuildParams(Script script, String imageName, DockerConfig config, String imageTag, Boolean push){
+        this.script = script;
         this.imageName = imageName;
         this.imageTag = imageTag ?: 'latest';
         this.config = config;

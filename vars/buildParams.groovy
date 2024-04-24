@@ -7,5 +7,7 @@ static def call(
         Boolean push,
         DockerConfig config
 ){
-  return new BuildParams(imageName,config, imageTag, push)
+  return new BuildParams(
+          Script:this,imageName:imageName, config: config, imageTag: imageTag, push:push
+  )
 }
