@@ -1,7 +1,7 @@
 import com.lutermart.BuildParams
 import com.lutermart.DockerConfig
 
-static def call(
+def call(
         String imageName,
         String imageTag,
         Boolean push,

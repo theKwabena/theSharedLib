@@ -1,6 +1,6 @@
 import com.lutermart.DockerConfig
 
-static def call(
+def call(
         String registry, String credentials
 ){
     return new DockerConfig(this, registry, credentials)
