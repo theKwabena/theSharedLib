@@ -1,4 +1,4 @@
-import com.lutermart.Docker
+import com.lutermart.DockerConfig
 
 static def call(
         String registry, String credentials
