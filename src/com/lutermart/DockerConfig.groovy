@@ -2,7 +2,7 @@ package com.lutermart
 
 
 class DockerConfig {
-    def script;;
+    Script script;;
     String registry;
     String credentials;
 
