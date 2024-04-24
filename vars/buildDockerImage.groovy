@@ -4,8 +4,8 @@ import com.lutermart.Docker
 
 
 
-def call(BuildParams params){
+def call(String imageName, String imageTag ){
     // Takes the imageName, image tag and a boolean push which specifies whether to push
     // the built docker image to a registry
-    return new Docker(this).buildDockerImage(params)
+    return new Docker(this).buildDockerImage(imageName, imageTag)
 }

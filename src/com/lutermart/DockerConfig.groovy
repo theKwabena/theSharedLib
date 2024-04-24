@@ -2,7 +2,7 @@ package com.lutermart
 
 
 class DockerConfig implements Serializable{
-    Script script;;
+    Script script;
     String registry;
     String credentials;
 
