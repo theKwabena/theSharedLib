@@ -1,6 +1,6 @@
 package com.lutermart
 
-class BuildParams {
+class BuildParams implements Serializable {
     Script script;
     String imageName;
     String imageTag;

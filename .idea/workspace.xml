@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da6b1052-49fb-4431-b60c-72f18f52ba0a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/lutermart/BuildParams.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/lutermart/BuildParams.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/lutermart/DockerConfig.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/lutermart/DockerConfig.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/buildParams.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/buildParams.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/dockerConfig.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/dockerConfig.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +65,7 @@
       <updated>1713777329557</updated>
       <workItem from="1713777330716" duration="14494000" />
       <workItem from="1713880996998" duration="4436000" />
-      <workItem from="1713917974338" duration="4207000" />
+      <workItem from="1713917974338" duration="4320000" />
     </task>
     <servers />
   </component>
