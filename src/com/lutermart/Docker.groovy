@@ -1,7 +1,5 @@
 package com.lutermart
 
-import com.lutermart.config.BuildParams
-
 class Docker implements Serializable{
     def script;
 
