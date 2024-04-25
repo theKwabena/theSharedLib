@@ -7,7 +7,7 @@ class DockerConfig{
 
     DockerConfig(String registry, String credentials_id){
         this.registry = registry;
-        this.credentials_id = credentials;
+        this.credentials_id = credentials_id;
     }
 
 }
