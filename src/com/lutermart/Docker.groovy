@@ -47,6 +47,6 @@ class Docker implements Serializable{
             script.sh "echo $script.PASS | docker login $registry -u $script.USER --password-stdin"
             // This defaults to dockerhub if a repo name is not provided
         }
-        script.sh "docker push $registry/$image"
+        script.sh "docker tag $image $registry/$image"
      }
 }
