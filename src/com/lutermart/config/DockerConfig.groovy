@@ -9,7 +9,13 @@ class DockerConfig{
     List valid_keys = ['registry', 'credentials_id']
 
     DockerConfig(Map params){
-        Validator.validate(valid_keys,params)
+
+        params.keySet().forEach { key ->
+            if(!valid_keys.contains(key)){
+                throw new IllegalArgumentException("Invalid Parameter $key")
+            }
+        }
+
         this.registry = params.registry
         this.credentials_id = params.credentials_id
 

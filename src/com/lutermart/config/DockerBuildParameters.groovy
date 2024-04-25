@@ -9,7 +9,11 @@ class DockerBuildParameters {
     List valid_keys = ['imageName', 'imageTag', 'push', 'config']
 
     DockerBuildParameters(Map params){
-        Validator.validate(valid_keys,params)
+        params.keySet().forEach { key ->
+            if(!valid_keys.contains(key)){
+                throw new IllegalArgumentException("Invalid Parameter $key")
+            }
+        }
         if(!params.config instanceof DockerConfig){
             throw new IllegalArgumentException("Config invalid, please specify a valid config")
         }
