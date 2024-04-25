@@ -37,16 +37,16 @@ class Docker implements Serializable{
 //        script.sh "docker push $imageName"
 //    }
 
-    def pushDockerImage(String image, String registry, String credentials_id){
+    def pushDockerImage(Map params){
         script.echo "----- PUSHING DOCKER IMAGE TO $registry -----"
         script.withCredentials([script.usernamePassword(
-                'credentialsId': credentials_id,
+                'credentialsId': params.credentials_id,
                 'passwordVariable': 'PASS',
                 'usernameVariable': 'USER'
         )]){
-            script.sh "echo $script.PASS | docker login $registry -u $script.USER --password-stdin"
+            script.sh "echo $script.PASS | docker login $params.registry -u $script.USER --password-stdin"
             // This defaults to dockerhub if a repo name is not provided
         }
-        script.sh "docker tag $image $registry/$image"
+        script.sh "docker tag $params.image $params.registry/$params.image"
      }
 }
