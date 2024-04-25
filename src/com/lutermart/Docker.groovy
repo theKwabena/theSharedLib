@@ -1,5 +1,7 @@
 package com.lutermart
 
+import com.lutermart.config.DockerBuildParameters
+
 class Docker implements Serializable{
     def script;
 
@@ -8,18 +10,17 @@ class Docker implements Serializable{
     }
 
 
-    def buildDockerImage(String params){
+    def buildDockerImage(DockerBuildParameters params){
         script.echo "----- BUILDING DOCKER IMAGE -----"
-        script.echo"$params"
-//        script.echo"$params.imageName $params.config.credentials_id"
-//        def appImage = script.docker.build("$params.imageName:$params.imageTag")
-//
-//        if (params.push) {
-//            script.docker.withRegistry(params.config.registry, params.config.credentials_id){
-//                appImage.push(params.imageTag)
-//            }
-//
-//        }
+        def appImage = script.docker.build("$params.imageName:$params.imageTag")
+
+        if (params.push) {
+            script.echo "push set to true, Trying to push docker image to provided repository"
+            script.docker.withRegistry(params.config.registry, params.config.credentials_id){
+                appImage.push(params.imageTag)
+            }
+
+        }
     }
 
 //    def buildDockerImage(String imageName, String imageTag){
@@ -34,10 +35,10 @@ class Docker implements Serializable{
 //        script.sh "docker push $imageName"
 //    }
 
-//    def pushDockerImage(String imageName, String imageTag, String registry, String credentialsID){
-//        script.echo "----- PUSHING DOCKER IMAGE TO $imageName -----"
-//        script.docker.withRegistry(registry, credentialsID){
-//            script.sh "docker push $imageName:$imageTag"
-//        }
-//     }
+    def pushDockerImage(image, String tag='',  String registry, String credentialsID){
+        script.echo "----- PUSHING DOCKER IMAGE TO $registry -----"
+        script.docker.withRegistry(registry, credentialsID){
+            tag ? image.push(tag) : image.push()
+        }
+     }
 }
