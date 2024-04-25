@@ -1,5 +1,5 @@
-import com.lutermart.BuildParams
-import com.lutermart.DockerConfig
+import com.lutermart.config.BuildParams
+import com.lutermart.config.DockerConfig
 
 def call(
         String imageName,

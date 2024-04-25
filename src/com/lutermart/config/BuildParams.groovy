@@ -1,4 +1,4 @@
-package com.lutermart
+package com.lutermart.config
 
 class BuildParams{
     String imageName;
