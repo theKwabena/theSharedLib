@@ -38,7 +38,7 @@ class Docker implements Serializable{
 //    }
 
     def pushDockerImage(Map params){
-        script.echo "----- PUSHING DOCKER IMAGE TO $registry -----"
+        script.echo "----- PUSHING DOCKER IMAGE TO $params.registry -----"
         script.withCredentials([script.usernamePassword(
                 'credentialsId': params.credentials_id,
                 'passwordVariable': 'PASS',
