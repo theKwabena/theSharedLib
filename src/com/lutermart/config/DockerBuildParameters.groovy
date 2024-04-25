@@ -4,16 +4,18 @@ class DockerBuildParameters {
     String imageName;
     String imageTag;
     Boolean push;
-   DockerConfig config;
+    DockerConfig config;
+    List valid_keys = ['imageName', 'imageTag', 'push', 'config']
 
-    DockerBuildParameters(String imageName, DockerConfig config, String imageTag='latest', Boolean push =false){
-        this.imageName = imageName;
-        this.config = config;
-        this.imageTag = imageTag
-        this.push = push
-
-        if (push && (config.registry =='' || config.credentials_id =='' )){
-            throw new IllegalArgumentException("Registry endpoint and credentials must be provided when push is true")
+    DockerBuildParameters(Map params){
+        validator.validate(valid_keys,params)
+        if(!params.config instanceof DockerConfig){
+            throw new IllegalArgumentException("Config invalid, please specify a valid config")
         }
+        this.imageName = params.imageName;
+        this.config = params.config as DockerConfig;
+        this.imageTag = params.imageTag
+        this.push = params.push
+
     }
 }
