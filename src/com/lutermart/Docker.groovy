@@ -12,14 +12,15 @@ class Docker implements Serializable{
 
     def buildDockerImage(BuildParams params){
         script.echo "----- BUILDING DOCKER IMAGE -----"
-        def appImage = script.docker.build("$params.imageName:$params.imageTag")
-
-        if (params.push) {
-            script.docker.withRegistry(params.config.registry, params.config.credentials_id){
-                appImage.push(params.imageTag)
-            }
-
-        }
+        script.echo"$params.imageName $params.config.credentials_id"
+//        def appImage = script.docker.build("$params.imageName:$params.imageTag")
+//
+//        if (params.push) {
+//            script.docker.withRegistry(params.config.registry, params.config.credentials_id){
+//                appImage.push(params.imageTag)
+//            }
+//
+//        }
     }
 
 //    def buildDockerImage(String imageName, String imageTag){
