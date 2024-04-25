@@ -1,5 +1,6 @@
 package com.lutermart.config
 
+
 class DockerBuildParameters {
     String imageName;
     String imageTag;
@@ -8,7 +9,7 @@ class DockerBuildParameters {
     List valid_keys = ['imageName', 'imageTag', 'push', 'config']
 
     DockerBuildParameters(Map params){
-        validator.validate(valid_keys,params)
+        Validator.validate(valid_keys,params)
         if(!params.config instanceof DockerConfig){
             throw new IllegalArgumentException("Config invalid, please specify a valid config")
         }

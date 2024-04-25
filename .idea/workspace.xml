@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da6b1052-49fb-4431-b60c-72f18f52ba0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/lutermart/config/validator.groovy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/lutermart/config/Validator.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/lutermart/config/DockerBuildParameters.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/lutermart/config/DockerBuildParameters.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/lutermart/config/DockerConfig.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/lutermart/config/DockerConfig.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/dockerBuildParams.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/dockerBuildParams.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/dockerConfig.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/dockerConfig.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
       <workItem from="1713880996998" duration="4436000" />
       <workItem from="1713917974338" duration="5636000" />
       <workItem from="1713966447356" duration="358000" />
-      <workItem from="1714017506500" duration="9873000" />
+      <workItem from="1714017506500" duration="10438000" />
     </task>
     <servers />
   </component>
