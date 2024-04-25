@@ -48,5 +48,6 @@ class Docker implements Serializable{
             // This defaults to dockerhub if a repo name is not provided
         }
         script.sh "docker tag $params.image $params.registry/$params.image"
+        script.sh "docker push $params.registry/$params.image"
      }
 }
