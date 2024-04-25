@@ -1,14 +1,14 @@
 package com.lutermart.config
 
-class BuildParams{
+class DockerBuildParameters {
     String imageName;
     String imageTag;
     Boolean push;
-//    DockerConfig config;
+   DockerConfig config;
 
-    BuildParams(String imageName, DockerConfig config, String imageTag='latest', Boolean push =false){
+    DockerBuildParameters(String imageName, DockerConfig config, String imageTag='latest', Boolean push =false){
         this.imageName = imageName;
-//        this.config = config;
+        this.config = config;
         this.imageTag = imageTag
         this.push = push
 
