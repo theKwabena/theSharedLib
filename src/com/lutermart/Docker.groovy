@@ -21,6 +21,7 @@ class Docker implements Serializable{
             }
 
         }
+        return appImage
     }
 
 //    def buildDockerImage(String imageName, String imageTag){
@@ -35,9 +36,9 @@ class Docker implements Serializable{
 //        script.sh "docker push $imageName"
 //    }
 
-    def pushDockerImage(image, String tag='',  String registry, String credentialsID){
+    def pushDockerImage(image, String tag,  String registry, String credentials_id){
         script.echo "----- PUSHING DOCKER IMAGE TO $registry -----"
-        script.docker.withRegistry(registry, credentialsID){
+        script.docker.withRegistry(registry, credentials_id){
             tag ? image.push(tag) : image.push()
         }
      }
