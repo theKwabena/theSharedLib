@@ -1,14 +1,12 @@
 package com.lutermart
 
-class BuildParams implements Serializable {
-    Script script;
+class BuildParams{
     String imageName;
     String imageTag;
     Boolean push;
     DockerConfig config;
 
-    BuildParams(script, String imageName, DockerConfig config, String imageTag, Boolean push){
-        this.script = script;
+    BuildParams(String imageName, DockerConfig config, String imageTag, Boolean push){
         this.imageName = imageName;
         this.imageTag = imageTag ?: 'latest';
         this.config = config;
