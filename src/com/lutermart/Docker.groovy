@@ -15,7 +15,7 @@ class Docker implements Serializable{
         def appImage = script.docker.build("$params.imageName:$params.imageTag")
 
         if (params.push) {
-            script.docker.withRegistry(params.config.registry, params.config.credentials){
+            script.docker.withRegistry(params.config.registry, params.config.credentials_id){
                 appImage.push(params.imageTag)
             }
 
