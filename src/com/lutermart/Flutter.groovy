@@ -22,7 +22,7 @@ class Flutter implements Serializable{
     }
 
     def buildApp(){
-        script.sh "flutter build"
+        script.sh "flutter build web --output-dir=build"
     }
 
     def generateNginxConf(siteName, rootDirectory){
