@@ -37,8 +37,8 @@ class Flutter implements Serializable{
         // Check if the configuration file already exists on the server
         script.sshagent([server.credentials_id]) {
             def existingConfFile = script.sh(
-                    script: "test -e /home/swarm/nginx-conf.d/${nginxConfFile} && echo exists || echo not_exists", returnStdout: true
-            ).trim()
+                    script: "ssh $server.user@$server.address '[ -e /home/swarm/nginx-conf.d/${nginxConfFile} ] && echo true || echo false'", returnStdout: true).trim()
+
             script.echo "$existingConfFile"
 
             // Read the content of the new configuration file
