@@ -35,7 +35,7 @@ class Flutter implements Serializable{
 
     def deployNginxConf(nginxConfFile, server) {
         // Check if the configuration file already exists on the server
-        script.ssh([server.credentials_id]) {
+        script.sshagent([server.credentials_id]) {
             def existingConfFile = script.sh(
                     script: "'[ -f /etc/nginx/conf.d/${nginxConfFile}.conf ] " +
                             "&& echo exists || echo not_exists'", returnStdout: true
