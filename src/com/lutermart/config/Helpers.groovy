@@ -1,11 +1,12 @@
 package com.lutermart.config
 
-import groovy.text.SimpleTemplateEngine
+import groovy.text.StreamingTemplateEngine
 
 class Helpers {
 
-    static def renderTemplate(Map binding, String template){
-        return new SimpleTemplateEngine().createTemplate(template).make(binding).toString()
+    def renderTemplate(Map binding, String template){
+        de
+        return new StreamingTemplateEngine().createTemplate(template).make(binding).toString()
     }
 
 }
