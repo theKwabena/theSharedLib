@@ -24,8 +24,8 @@ class Flutter implements Serializable{
     def generateNginxConf(siteName, rootDirectory){
         String nginx_template = script.libraryResource 'com/lutermart/templates/nginx.template.conf'
         def binding = [
-                siteName : siteName,
-                rootDirectory : rootDirectory,
+                site_name : siteName,
+                 root_directory: rootDirectory,
         ]
 
         def render = Helpers.renderTemplate(binding, nginx_template)
