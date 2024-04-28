@@ -23,7 +23,7 @@ class Flutter implements Serializable{
 
     def generateNginxConf(siteName, rootDirectory){
         String nginx_template = script.libraryResource 'com/lutermart/templates/nginx.template.conf'
-        Map binding = [
+        def binding = [
                 siteName : siteName,
                 rootDirectory : rootDirectory,
         ]
