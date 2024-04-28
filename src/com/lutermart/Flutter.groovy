@@ -57,7 +57,7 @@ class Flutter implements Serializable{
             }
 
             // Move the new configuration file to the server
-            script.sh "scp ${nginxConfFile} ${server.user}@${server.address}:/etc/nginx/conf.d/${nginxConfFile}.conf"
+            script.sh "scp ${nginxConfFile} ${server.user}@${server.address}:/home/slv/${nginxConfFile}"
         }
     }
 
