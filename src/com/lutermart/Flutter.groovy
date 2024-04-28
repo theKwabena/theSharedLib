@@ -67,12 +67,9 @@ class Flutter implements Serializable{
 
     def deployBuildFiles(appName, buildDir, server) {
         // Check if the build directory already exists on the server
-        script.sshagent([server.credentials]) {
-
-
+        script.sshagent([server.credentials_id]) {
             def existingBuildDir = script.sh(script: "ssh $server.user@$server.address '[ -d /home/swarm/sites_available/${appName} ] " +
                     "&& echo exists || echo not_exists'", returnStdout: true).trim()
-
             // Check for changes in the build files
             def diffOutput = ""
             if (existingBuildDir == 'exists') {
