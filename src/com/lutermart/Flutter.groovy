@@ -21,6 +21,10 @@ class Flutter implements Serializable{
         script.sh "flutter test"
     }
 
+    def buildApp(){
+        script.sh "flutter build"
+    }
+
     def generateNginxConf(siteName, rootDirectory){
         String nginx_template = script.libraryResource 'com/lutermart/templates/nginx.template.conf'
         def binding = [
@@ -61,22 +65,26 @@ class Flutter implements Serializable{
         }
     }
 
-    def deployBuildFiles(appName, buildDir, serverAddress) {
+    def deployBuildFiles(appName, buildDir, server) {
         // Check if the build directory already exists on the server
-        def existingBuildDir = sh(script: "ssh user@${serverAddress} '[ -d /var/www/${appName} ] " +
-                "&& echo exists || echo not_exists'", returnStdout: true).trim()
+        script.sshagent([server.credentials]) {
 
-        // Check for changes in the build files
-        def diffOutput = ""
-        if (existingBuildDir == 'exists') {
-            diffOutput = sh(script: "rsync -avnc --delete ${buildDir}/ user@${serverAddress}:/var/www/${appName}/", returnStdout: true).trim()
-        }
 
-        if (existingBuildDir == 'not_exists' || diffOutput) {
-            // Move the new build files to the server
-            sh "rsync -avz --delete ${buildDir}/ user@${serverAddress}:/var/www/${appName}/"
-        } else {
-            echo "No changes detected in build files. Skipping deployment."
+            def existingBuildDir = script.sh(script: "ssh $server.user@$server.address '[ -d /home/swarm/sites_available/${appName} ] " +
+                    "&& echo exists || echo not_exists'", returnStdout: true).trim()
+
+            // Check for changes in the build files
+            def diffOutput = ""
+            if (existingBuildDir == 'exists') {
+                diffOutput = script.sh(script: "rsync -avnc --delete ${buildDir}/ $server.user@$server.address:/home/swarm/sites_available/${appName}/", returnStdout: true).trim()
+            }
+
+            if (existingBuildDir == 'not_exists' || diffOutput) {
+                // Move the new build files to the server
+                script.sh "rsync -avz --delete ${buildDir}/ $server.user@$server.address:/home/swarm/sites_available/${appName}/"
+            } else {
+                script.echo "No changes detected in build files. Skipping deployment."
+            }
         }
     }
 
