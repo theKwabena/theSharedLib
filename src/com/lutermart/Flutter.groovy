@@ -30,7 +30,7 @@ class Flutter implements Serializable{
 
         def render = Helpers.renderTemplate(binding, nginx_template)
 
-        def nginxConfFile = script.writeFile(file: "nginx/${siteName}.conf", text: render)
+        def nginxConfFile = script.writeFile(file: "${siteName}.conf", text: render)
         return nginxConfFile
     }
 
