@@ -19,6 +19,14 @@ class Flutter implements Serializable{
         script.sh "flutter test"
     }
 
+    def generateNginxConf(siteName, rootDirectory){
+        def nginxTemplate = libraryResource('templates/nginx.conf.template').readText()
+        def nginxConf = nginxTemplate.replaceAll('\\{\\{ site_name \\}\\}', siteName)
+                .replaceAll('\\{\\{ root_directory \\}\\}', rootDirectory)
+        def nginxConfFile = writeFile(file: "nginx/${siteName}.conf", text: nginxConf)
+
+        return nginxConfFile
+    }
 
 }
 
