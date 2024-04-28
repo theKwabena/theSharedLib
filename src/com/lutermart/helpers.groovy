@@ -1,3 +1,7 @@
+package com.lutermart
+
+import groovy.text.SimpleTemplateEngine
+
 class DockerConfig {
     String registry;
     String credentials;
@@ -26,3 +30,5 @@ class BuildParams {
         }
     }
 }
+
+

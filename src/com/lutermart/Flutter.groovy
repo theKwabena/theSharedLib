@@ -1,5 +1,7 @@
 package com.lutermart
 
+import com.lutermart.config.Helpers
+
 class Flutter implements Serializable{
     def script
 
@@ -20,13 +22,13 @@ class Flutter implements Serializable{
     }
 
     def generateNginxConf(siteName, rootDirectory){
-        def nginxTemplate = script.libraryResource 'com/lutermart/templates/nginx.template.conf'
-        def binding = [
+        String nginx_template = script.libraryResource 'com/lutermart/templates/nginx.template.conf'
+        Map binding = [
                 siteName : siteName,
                 rootDirectory : rootDirectory,
         ]
 
-        def render = script.renderTemplate(nginxTemplate, binding)
+        def render = Helpers.renderTemplate(binding, nginx_template)
 
         def nginxConfFile = script.writeFile(file: "nginx/${siteName}.conf", text: render)
         return nginxConfFile
