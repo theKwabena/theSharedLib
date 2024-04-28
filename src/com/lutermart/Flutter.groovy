@@ -47,7 +47,7 @@ class Flutter implements Serializable{
             // Compare with the existing configuration file if it exists
             if (existingConfFile == 'exists') {
                 def existingConfContent = script.sh(
-                        script: "'cat /etc/nginx/conf.d/${nginxConfFile}'", returnStdout: true
+                        script: "'cat /home/swarm/nginx-conf.d/${nginxConfFile}'", returnStdout: true
                 ).trim()
 
                 if (existingConfContent == newConfContent) {
