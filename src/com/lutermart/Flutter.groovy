@@ -39,6 +39,7 @@ class Flutter implements Serializable{
             def existingConfFile = script.sh(
                     script: "test /etc/nginx/conf.d/${nginxConfFile} && echo exists || echo not_exists", returnStdout: true
             ).trim()
+            script.echo "$existingConfFile"
 
             // Read the content of the new configuration file
             def newConfContent = script.readFile(nginxConfFile)
