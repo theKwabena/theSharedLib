@@ -13,5 +13,12 @@ class NginxWebApp implements Serializable{
                 throw new IllegalArgumentException("Invalid Parameter $key")
             }
         }
+
+        params.forEach {
+            key,value ->
+                if(this.hasProperty(key)){
+                    this."$key" = value
+                }
+        }
     }
 }
