@@ -16,27 +16,29 @@ class Nginx implements Serializable{
 
         script.sshagent([host.server.credentialsID]) {
 
-            script.echo "Checking if the build directory exists"
-            def existingBuildDir = script.sh(
-                    script: "ssh $host.server.user@$host.server.address '[ -d ${host.sitesDirectory}/${app.appName} ] " +
-                    "&& echo exists || echo not_exists'", returnStdout: true).trim()
+//            script.echo "Checking if the build directory exists"
+//            def existingBuildDir = script.sh(
+//                    script: "ssh $host.server.user@$host.server.address '[ -d ${host.sitesDirectory}/${app.appName} ] " +
+//                    "&& echo exists || echo not_exists'", returnStdout: true).trim()
+//
+//            // Check for changes in the build files
+//            def diffOutput = ""
+//            if (existingBuildDir == 'exists') {
+//                script.echo "Build directory exists, checking file changes"
+//                diffOutput = script.sh(script:
+//                        "rsync -avnc --delete ${app.buildDirectory} $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/",
+//                        returnStdout: true).trim()
+//            }
+//
+//            script.echo "$diffOutput for the output of files"
+//
+//            if (existingBuildDir == 'not_exists' || diffOutput) {
+//                // Move the new build files to the server
+//                script.sh "rsync -avz --delete ${app.buildDirectory}/ $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/"
+//            }
 
-            // Check for changes in the build files
-            def diffOutput = ""
-            if (existingBuildDir == 'exists') {
-                script.echo "Build directory exists, checking file changes"
-                diffOutput = script.sh(script:
-                        "rsync -avnc --delete ${app.buildDirectory} $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/",
-                        returnStdout: true).trim()
-            }
-
-            script.echo "$diffOutput for the output of files"
-
-            if (existingBuildDir == 'not_exists' || diffOutput) {
-                // Move the new build files to the server
-                script.sh "rsync -avz --delete ${app.buildDirectory}/ $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/"
-            }
-
+            // Skip all checks and sync build directory with server
+            script.sh "rsync -avz --delete ${app.buildDirectory}/ $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/"
             
         }
     }
