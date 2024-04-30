@@ -30,7 +30,7 @@ class Nginx implements Serializable{
                         returnStdout: true).trim()
             }
 
-            echo "$diffOutput"
+            script.echo "$diffOutput"
 
             if (existingBuildDir == 'not_exists' || diffOutput) {
                 // Move the new build files to the server
