@@ -70,7 +70,7 @@ class Nginx implements Serializable{
             // Deploy app config file to nginx
             def existingConfFile = script.sh(
                     script: "ssh $host.server.user@$host.server.address" +
-                            " '[ -e $host.configurationDirectory/${app.configFile} ] " +
+                            " '[ -e $host.configurationDirectory/${app.appName}.conf ] " +
                             "&& echo true || echo false'", returnStdout: true
             ).trim();
 
