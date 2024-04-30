@@ -29,7 +29,7 @@ class Nginx implements Serializable{
 
             if (existingBuildDir == 'not_exists' || diffOutput) {
                 // Move the new build files to the server
-                script.sh "rsync -avz --delete ${app.buildDirectory}/ $host.server.user@$host.server.address:$host.sitesDirectory${app.appName}/"
+                script.sh "rsync -avz --delete ${app.buildDirectory}/ $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/"
             } else {
                 script.echo "No changes detected in build files. Skipping deployment."
             }
