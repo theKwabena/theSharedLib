@@ -12,6 +12,31 @@ class Nginx implements Serializable{
         this.script = script
     }
 
+    def deployConfigFile(server, configFile){
+        def existingConfFile = script.sh(
+                script: "ssh $server.user@$server.address '[ -e /home/swarm/nginx-conf.d/${configFile} ] && echo true || echo false'", returnStdout: true).trim()
+
+        script.echo "$existingConfFile"
+
+        // Read the content of the new configuration file
+        def newConfContent = script.readFile(configFile)
+
+        // Compare with the existing configuration file if it exists
+        if (existingConfFile == 'exists') {
+            def existingConfContent = script.sh(
+                    script: "'cat /home/swarm/nginx-conf.d/${nginxConfFile}'", returnStdout: true
+            ).trim()
+
+            if (existingConfContent == newConfContent) {
+                script.echo "No changes detected in Nginx configuration. Skipping deployment."
+                return
+            }
+        }
+
+        // Move the new configuration file to the server
+        script.sh "scp ${nginxConfFile} ${server.user}@${server.address}:/home/swarm/nginx-conf.d/"
+    }
+
     def deployApp(NginxHost host, NginxWebApp app) {
 
         script.sshagent([host.server.credentialsID]) {
@@ -38,8 +63,34 @@ class Nginx implements Serializable{
 //            }
 
             // Skip all checks and sync build directory with server
+            script.echo "Moving build files to nginx sites directory"
             script.sh "rsync -avz --delete ${app.buildDirectory}/ $host.server.user@$host.server.address:$host.sitesDirectory/${app.appName}/"
-            
+
+
+            // Deploy app config file to nginx
+            def existingConfFile = script.sh(
+                    script: "ssh $host.server.user@$host.server.address" +
+                            " '[ -e $host.configurationDirectory/${app.configFile} ] " +
+                            "&& echo true || echo false'", returnStdout: true
+            ).trim();
+
+            def newConfContent = script.readFile(app.configFile)
+
+            if (existingConfFile == 'exists') {
+                script.echo "Config file already exists, Checking for changes"
+                def existingConfContent = script.sh(
+                        script: "'cat $host.configurationDirectory/$app.configFile'", returnStdout: true
+                ).trim()
+
+                if (existingConfContent == newConfContent) {
+                    script.echo "No changes detected in Nginx configuration."
+                    return
+                }
+            }
+
+            script.echo "Moving app config file to nginx sites configuration directory"
+            script.sh "scp $app.configFile $host.server.user@$host.server.address:$host.configurationDirectory/"
+
         }
     }
 }
