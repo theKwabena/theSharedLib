@@ -10,10 +10,14 @@ class NginxHost {
             'sitesDirectory',
             'server'
     ]
-    Validator validator = new Validator()
+//    Validator validator = new Validator()
 
     NginxHost(Map<String,String> params){
-        validator.validate(valid_keys, params)
+        params.keySet().forEach { key ->
+            if(!valid_keys.contains(key)){
+                throw new IllegalArgumentException("Invalid Parameter $key")
+            }
+        }
 
         if(!params.server instanceof Server){
             throw new IllegalArgumentException("Please specify a valid server configuration")
