@@ -7,7 +7,7 @@ class NginxWebApp implements Serializable{
 //    Validator validator = new Validator()
     List valid_keys = ['appName', 'configFile', 'buildDirectory']
 
-    NginxWebApp(Map<String,String> app){
+    NginxWebApp(Map<String,String> params){
         params.keySet().forEach { key ->
             if(!valid_keys.contains(key)){
                 throw new IllegalArgumentException("Invalid Parameter $key")
