@@ -4,6 +4,7 @@ class NginxWebApp implements Serializable{
     String appName;
     String configFile;
     String buildDirectory
+    Validator validator = new Validator()
     List valid_keys = ['appName', 'configFile', 'buildDirectory']
 
     NginxWebApp(Map<String,String> app){

@@ -10,6 +10,7 @@ class NginxHost {
             'sitesDirectory',
             'server'
     ]
+    Validator validator = new Validator()
 
     NginxHost(Map<String,String> params){
         validator.validate(valid_keys, params)
