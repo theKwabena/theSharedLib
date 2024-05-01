@@ -22,6 +22,8 @@ class Flutter implements Serializable{
     }
 
     def buildApp(){
+        script.sh "flutter clean"
+        script.sh "flutter pub get"
         script.sh "flutter build web --output-dir=build"
     }
 
