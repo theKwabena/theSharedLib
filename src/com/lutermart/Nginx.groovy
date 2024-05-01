@@ -89,7 +89,7 @@ class Nginx implements Serializable{
             }
 
             script.echo "Moving app config file to nginx sites configuration directory"
-            script.sh "scp $app.configFile $host.server.user@$host.server.address:$host.configurationDirectory/$app.appName"
+            script.sh "scp $app.configFile $host.server.user@$host.server.address:$host.configurationDirectory/${app.appName}.conf"
 
         }
     }
